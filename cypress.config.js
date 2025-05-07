@@ -19,8 +19,12 @@ module.exports = defineConfig({
     },
 
     excludeSpecPattern: ['**/1-getting-started', '**/2-advanced-examples'],
-    specPattern: '**/*.spec.js'
-    ,
+
+    // Use a dynamic spec pattern to include test scripts from both directories
+    specPattern: [
+      "C:/Users/misty/OneDrive/Desktop/VAE.magento.testscript/testScripts/cypress/e2e/**/*.spec.js",
+      "**/*.spec.js"
+    ],
 
     // Retry settings to improve test stability
     retries: {
@@ -31,7 +35,7 @@ module.exports = defineConfig({
     // Cypress reporting setup for better debugging and tracking
     reporter: "mochawesome",
     reporterOptions: {
-      reportDir: "cypress/reports",
+      reportDir: "C:/Users/misty/OneDrive/Desktop/VAE.magento.testscript/cypress/reports",
       overwrite: false,
       html: true,
       json: true
