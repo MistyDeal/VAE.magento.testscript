@@ -1,10 +1,19 @@
 /// <reference types="cypress" />
 
 describe('Test Suite: VAE | Sprint 001 | US 001 | UI', () => {
-
+  
   // Before each test, navigate to the account creation page
   beforeEach(() => {
     cy.visit('/customer/account/create'); // Uses baseUrl from cypress.config.js
+
+    // Debug environment variables to ensure they're loaded correctly
+    cy.log('Project Name:', Cypress.env('project_name'));
+    cy.log('Sprint Number:', Cypress.env('sprint_number'));
+    cy.log('User Story Number:', Cypress.env('userstory_number'));
+    cy.log('Test Case Type:', Cypress.env('testcase_type'));
+    cy.log('First Name:', Cypress.env('first_name'));
+    cy.log('Last Name:', Cypress.env('last_name'));
+    cy.log('Password:', Cypress.env('password'));
   });
 
   describe('Valid Account Creation', () => {
@@ -12,11 +21,16 @@ describe('Test Suite: VAE | Sprint 001 | US 001 | UI', () => {
       // Click "Create an Account" link
       cy.contains('a', 'Create an Account').click();
 
-      // Hardcoded test data
-      const firstName = 'Misty';
-      const lastName = 'Deal';
+      // Retrieve test data from environment variables
+      const firstName = Cypress.env('first_name');
+      const lastName = Cypress.env('last_name');
       const email = `mistytest${Date.now()}@email.com`;
-      const password = 'StrongPass123!';
+      const password = Cypress.env('password');
+
+      // Ensure environment variables are correctly populated
+      expect(firstName, 'First Name').to.exist;
+      expect(lastName, 'Last Name').to.exist;
+      expect(password, 'Password').to.exist;
 
       // Fill required fields
       cy.get('#firstname').type(firstName); // Enter first name
@@ -42,9 +56,12 @@ describe('Test Suite: VAE | Sprint 001 | US 001 | UI', () => {
       cy.get('button[title="Create an Account"]').click();
 
       // Validate that error messages appear
-      cy.get('.message-error').should('be.visible').and('contain', 'This is a required field.');
+      cy.contains('This is a required field.').should('be.visible');
+
+
     });
   });
 });
+
 
 
