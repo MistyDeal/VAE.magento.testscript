@@ -6,12 +6,28 @@ module.exports = defineConfig({
   video: false,
   e2e: {
     baseUrl: "https://magento.softwaretestingboard.com",
+    
+    // Define environment variables for project metadata and test data
+    env: {
+      project_name: "VAE",
+      sprint_number: "001",
+      userstory_number: "US001",
+      testcase_type: "UI",
+      first_name: "Misty",
+      last_name: "Deal",
+      password: "StrongPass123!"
+    },
+
     excludeSpecPattern: ['**/1-getting-started', '**/2-advanced-examples'],
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+
+    // Retry settings to improve test stability
     retries: {
-      runMode: 2, //retries failed tests twice when using 'npx cypress run'
-      openMode: 1 //retries once when running 'npx cypress open'
+      runMode: 2, // Retries failed tests twice when using 'npx cypress run'
+      openMode: 1 // Retries once when running 'npx cypress open'
     },
+
+    // Cypress reporting setup for better debugging and tracking
     reporter: "mochawesome",
     reporterOptions: {
       reportDir: "cypress/reports",
@@ -19,8 +35,10 @@ module.exports = defineConfig({
       html: true,
       json: true
     },
+
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      // Implement node event listeners here if needed
     },
   },
 });
+
