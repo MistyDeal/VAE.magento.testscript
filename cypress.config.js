@@ -19,7 +19,8 @@ module.exports = defineConfig({
     },
 
     excludeSpecPattern: ['**/1-getting-started', '**/2-advanced-examples'],
-    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+    specPattern: '**/*.spec.js'
+    ,
 
     // Retry settings to improve test stability
     retries: {
@@ -41,4 +42,5 @@ module.exports = defineConfig({
     },
   },
 });
+
 
