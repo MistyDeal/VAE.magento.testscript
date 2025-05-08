@@ -16,10 +16,10 @@ describe('Test Suite: VAE | Sprint 001 | US 001 | UI', () => {
       cy.get('@testData').then(({ firstName, lastName, password }) => {
         const email = `mistytest${Date.now()}@email.com`;
 
-        expect(firstName, 'First Name').to.exist;
-        expect(lastName, 'Last Name').to.exist;
-        expect(password, 'Password').to.exist;
-
+        expect(firstName).to.exist;
+        expect(lastName).to.exist;
+        expect(password).to.exist;
+        
         // Fill out registration form
         cy.get('#firstname').type(firstName);
         cy.get('#lastname').type(lastName);
